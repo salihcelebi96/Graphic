@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  totalShot: 200,
-  successShot: 100,
-  unSuccessShot: 100,
+  totalShot: 100,
+  successShot: 50,
+  unSuccessShot: 50,
+  
   
 };
 
