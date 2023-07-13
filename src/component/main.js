@@ -7,6 +7,7 @@ const Main = () => {
   const [totalShot, setTotalShot] = useState('');
   const [successShot, setSuccessShot] = useState('');
   const [unSuccessShot, setUnSuccessShot] = useState('');
+  const [chartName, setChartName] = useState('');
 
   const dispatch = useDispatch();
 
@@ -22,11 +23,16 @@ const Main = () => {
     setUnSuccessShot(Number(e.target.value));
   };
 
+  const handleChartNameChange = (e) => {
+    setChartName(e.target.value);
+  };
+
   const handleSaveClick = () => {
     const newData = {
       totalShot: Number(totalShot),
       successShot: Number(successShot),
       unSuccessShot: Number(unSuccessShot),
+      chartName: chartName,
     };
 
     dispatch(saveData(newData));
@@ -57,11 +63,23 @@ const Main = () => {
   };
 
   return (
-    <div className="flex justify-center mt-5 gap-9 mx-5">
+    <div className="flex justify-center pt-5 gap-9 mx-5">
+        <div className="flex flex-col">
+        <label htmlFor="chartName">Chart Name: </label>
+        <input
+          className="w-[150px] bg-gray-600 "
+          type="text"
+          id="chartName"
+          value={chartName}
+          onChange={handleChartNameChange}
+        />
+      </div>
+
+
       <div className="flex flex-col">
         <label htmlFor="totalShot">Total Shot: </label>
         <input
-          className="w-[100px]"
+          className="w-[100px] bg-gray-600"
           type="text"
           id="totalShot"
           value={totalShot}
@@ -71,7 +89,7 @@ const Main = () => {
       <div className="flex flex-col">
         <label htmlFor="successShot">Success Shot: </label>
         <input
-          className="w-[100px]"
+          className="w-[100px] bg-gray-600"
           type="text"
           id="successShot"
           value={successShot}
@@ -81,18 +99,19 @@ const Main = () => {
       <div className="flex flex-col">
         <label htmlFor="unSuccessShot">Unsuccess Shot: </label>
         <input
-          className="w-[118px]"
+          className="w-[118px] bg-gray-600"
           type="text"
           id="unSuccessShot"
           value={unSuccessShot}
           onChange={handleUnSuccessShotChange}
         />
       </div>
+      
       <div className="flex items-start gap-5">
         <button onClick={handleSaveClick}>Kaydet</button>
         <button onClick={handleUpdateClick}>Güncelle</button>
       </div>
-      <div className="ml-auto flex items-center">
+      <div className="ml-auto flex ">
         <Link to="/store">Go to Store</Link>
       </div>
     </div>

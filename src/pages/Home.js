@@ -4,10 +4,12 @@ import Graphic from "../component/Graphic"
 
 const Home = () => {
   return (
-    <div>
+    <div className='bg-gray-600 text-white'>
       <Main/>
       <Graphic/>
     </div>
+      
+    
   )
 }
 
