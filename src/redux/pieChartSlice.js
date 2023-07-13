@@ -4,8 +4,7 @@ const initialState = {
   totalShot: 100,
   successShot: 50,
   unSuccessShot: 50,
-  
-  
+  savedData: null, // Initialize savedData as null
 };
 
 const pieChartSlice = createSlice({
@@ -16,15 +15,23 @@ const pieChartSlice = createSlice({
       const { successShot, unSuccessShot } = action.payload;
 
       const totalShot = successShot + unSuccessShot;
-      
 
       state.totalShot = totalShot;
       state.successShot = successShot;
       state.unSuccessShot = unSuccessShot;
-      
     },
+    saveData: (state, action) => {
+        const { successShot, unSuccessShot, totalShot } = state;
+        
+        state.savedData = {
+          successShot,
+          unSuccessShot,
+          totalShot,
+        };
+      },
+      
   },
 });
 
-export const { setPieChartData } = pieChartSlice.actions;
-export default pieChartSlice;
+export const { setPieChartData, saveData } = pieChartSlice.actions;
+export default pieChartSlice.reducer;

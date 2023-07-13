@@ -1,10 +1,10 @@
 // store.js
 import { configureStore } from '@reduxjs/toolkit';
-import pieChartSlice from './pieChartSlice';
+import pieChartReducer from './pieChartSlice';
 
 const store = configureStore({
   reducer: {
-    pieChart: pieChartSlice.reducer,
+    pieChart: pieChartReducer,
   },
 });
 
