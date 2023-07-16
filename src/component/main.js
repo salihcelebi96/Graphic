@@ -28,6 +28,11 @@ const Main = () => {
   };
 
   const handleSaveClick = () => {
+    if (!totalShot || !successShot || !unSuccessShot || !chartName) {
+      alert('Please fill in all the fields.');
+      return;
+    }
+
     const newData = {
       totalShot: Number(totalShot),
       successShot: Number(successShot),
@@ -64,7 +69,7 @@ const Main = () => {
 
   return (
     <div className="flex justify-center pt-5 gap-9 mx-5">
-        <div className="flex flex-col">
+      <div className="flex flex-col">
         <label htmlFor="chartName">Chart Name: </label>
         <input
           className="w-[150px] bg-gray-600 "
@@ -74,7 +79,6 @@ const Main = () => {
           onChange={handleChartNameChange}
         />
       </div>
-
 
       <div className="flex flex-col">
         <label htmlFor="totalShot">Total Shot: </label>
@@ -106,7 +110,7 @@ const Main = () => {
           onChange={handleUnSuccessShotChange}
         />
       </div>
-      
+
       <div className="flex items-start gap-5">
         <button onClick={handleSaveClick}>Kaydet</button>
         <button onClick={handleUpdateClick}>Güncelle</button>

@@ -4,6 +4,7 @@ import Store from "./pages/StoragePage";
 
 import './App.css';
 
+
 const App = () => {
   return (
     <Router>
