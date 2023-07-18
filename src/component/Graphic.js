@@ -58,7 +58,7 @@ const PieChartComponent = () => {
     };
   }, [successShot, unSuccessShot]);
 
-  return <div className='flex justify-center mb-5 h-screen items-center' ref={chartRef}></div>;
+  return <div className='flex justify-center mb-5 h-screen bg-gray-600 items-center' ref={chartRef}></div>;
 };
 
 export default PieChartComponent;

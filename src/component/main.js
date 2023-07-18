@@ -68,11 +68,11 @@ const Main = () => {
   };
 
   return (
-    <div className="flex justify-center pt-5 gap-9 mx-5">
+    <div className="flex justify-center pt-5 gap-9 mx-5 bg-gray-600">
       <div className="flex flex-col">
         <label htmlFor="chartName">Chart Name: </label>
         <input
-          className="w-[150px] bg-gray-600 "
+          className="w-[120px] bg-gray-700 border-none outline-none"
           type="text"
           id="chartName"
           value={chartName}
@@ -83,7 +83,7 @@ const Main = () => {
       <div className="flex flex-col">
         <label htmlFor="totalShot">Total Shot: </label>
         <input
-          className="w-[100px] bg-gray-600"
+          className="w-[100px] bg-gray-700 outline-none"
           type="text"
           id="totalShot"
           value={totalShot}
@@ -93,7 +93,7 @@ const Main = () => {
       <div className="flex flex-col">
         <label htmlFor="successShot">Success Shot: </label>
         <input
-          className="w-[100px] bg-gray-600"
+          className="w-[100px] bg-gray-700 outline-none"
           type="text"
           id="successShot"
           value={successShot}
@@ -103,7 +103,7 @@ const Main = () => {
       <div className="flex flex-col">
         <label htmlFor="unSuccessShot">Unsuccess Shot: </label>
         <input
-          className="w-[118px] bg-gray-600"
+          className="w-[110px] bg-gray-700 outline-none"
           type="text"
           id="unSuccessShot"
           value={unSuccessShot}
@@ -115,7 +115,7 @@ const Main = () => {
         <button onClick={handleSaveClick}>Kaydet</button>
         <button onClick={handleUpdateClick}>Güncelle</button>
       </div>
-      <div className="ml-auto flex ">
+      <div className="ml-auto flex">
         <Link to="/store">Go to Store</Link>
       </div>
     </div>
