@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import * as d3 from 'd3';
 import Download from './download';
 
+
 const StoragePage = () => {
   const chartRef = useRef(null);
   const [isNull, setIsNull] = useState(false);
@@ -164,9 +165,14 @@ const StoragePage = () => {
   }, []);
 
   return (
-    <div className="h-full bg-gray-600 text-white">
+    <div className="h-full bg-gray-600 text-white storage-page">
       <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-5 lg:grid-cols-4 absolute left-3" ref={chartRef}></div>
-      <Download selectedChart={selectedChart} isModalOpen={isModalOpen} />
+      {selectedChart ? ( // Check if selectedChart is not null
+        <div className='overlay'>
+          <Download selectedChart={selectedChart} isModalOpen={isModalOpen} />
+        </div>
+      ) : null}
+     
 
 
 

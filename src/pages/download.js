@@ -62,7 +62,8 @@ const Download = ({ selectedChart }) => {
     };
   }, [selectedChart]);
 
-  return <div className="flex justify-center items-center mb-5 h-screen   bg-gray-600" ref={chartRef}></div>;
+  return<div className="flex justify-center items-center mb-5 h-[600px] w-[800px]  bg-gray-400" ref={chartRef}></div>
+  
 };
 
 export default Download;
