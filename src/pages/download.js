@@ -1,11 +1,68 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react';
+import * as d3 from 'd3';
 
-const Download = () => {
-  return (
-    <div>
-      <h1>Download sayfası</h1>
-    </div>
-  )
-}
+const Download = ({ selectedChart }) => {
+  const chartRef = useRef(null);
+  console.log(selectedChart)
 
-export default Download
+  useEffect(() => {
+    if (!selectedChart) {
+      return; // If selectedChart is null or undefined, exit early
+    }
+
+    const data = [
+      { label: 'Successful Shots', value: selectedChart.successShot },
+      { label: 'Unsuccessful Shots', value: selectedChart.unSuccessShot },
+    ];
+
+    const width = 400;
+    const height = 400;
+    const radius = Math.min(width, height) / 2;
+
+    const color = d3.scaleOrdinal(d3.schemeCategory10);
+
+    const pie = d3.pie().value((d) => d.value);
+
+    const arc = d3.arc().innerRadius(0).outerRadius(radius);
+
+    const svg = d3
+      .select(chartRef.current)
+      .append('svg')
+      .attr('width', width)
+      .attr('height', height)
+      .append('g')
+      .attr('transform', `translate(${width / 2}, ${height / 2})`);
+
+    const slices = svg
+      .selectAll('path')
+      .data(pie(data))
+      .enter()
+      .append('path')
+      .attr('d', arc)
+      .attr('fill', (d, i) => color(i));
+
+    const labels = svg
+      .selectAll('text')
+      .data(pie(data))
+      .enter()
+      .append('text')
+      .attr('transform', (d) => `translate(${arc.centroid(d)})`)
+      .attr('dy', '0.35em')
+      .attr('text-anchor', 'middle')
+      .text((d) => {
+        if (d && d.data && d.data.label) {
+          return `${d.data.label}: ${d.data.value.toFixed(2)}%`;
+        }
+        return '';
+      });
+
+    return () => {
+      // Clear the SVG
+      d3.select(chartRef.current).selectAll('svg').remove();
+    };
+  }, [selectedChart]);
+
+  return <div className="flex justify-center items-center mb-5 h-screen   bg-gray-600" ref={chartRef}></div>;
+};
+
+export default Download;

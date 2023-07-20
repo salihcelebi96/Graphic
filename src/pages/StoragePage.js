@@ -1,13 +1,23 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import * as d3 from 'd3';
+import Download from './download';
 
 const StoragePage = () => {
   const chartRef = useRef(null);
   const [isNull, setIsNull] = useState(false);
   const [chartNames, setChartNames] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedChart, setSelectedChart] = useState(null);
+
+
 
   const fetchDataFromLocalStorage = useCallback(() => {
+
+    
+    
+    // Rest of the code for the StoragePage component...
+    
     // SVG cleanup
     d3.select(chartRef.current).selectAll('svg').remove();
 
@@ -100,14 +110,20 @@ const StoragePage = () => {
         .attr('height', height)
         .append('g')
         .attr('transform', `translate(${width / 2}, ${height / 2})`);
+      
+        
 
-      const slices = svg
+        const slices = svg
         .selectAll('path')
         .data(pie(chartData))
         .enter()
         .append('path')
         .attr('d', arc)
-        .attr('fill', (d, i) => color(i));
+        .attr('fill', (d, i) => color(i))
+        .on('click', (d) => {
+          setSelectedChart(dataGroup); // Set the selected chart to the entire dataGroup object
+        });
+      
 
       const labels = svg
         .selectAll('text')
@@ -117,7 +133,9 @@ const StoragePage = () => {
         .attr('transform', (d) => `translate(${arc.centroid(d)})`)
         .attr('dy', '0.35em')
         .attr('text-anchor', 'middle')
+        .attr('class', 'text-sm')
         .text((d) => `${d.data.label}: ${d.data.value.toFixed(2)}%`);
+        
 
       // Add Remove button
       chartDiv
@@ -148,14 +166,23 @@ const StoragePage = () => {
   return (
     <div className="h-full bg-gray-600 text-white">
       <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-5 lg:grid-cols-4 absolute left-3" ref={chartRef}></div>
-      <div className="absolute right-5 text-white mt-5">
+      <Download selectedChart={selectedChart} isModalOpen={isModalOpen} />
+
+
+
+      <div className="absolute right-5 top-0 text-white mt-5">
         <Link to="/">Go to Main</Link>
+
       </div>
 
       {isNull && (
         <div className="flex justify-center text-red-500 text-4xl"></div>
+
       )}
+      
     </div>
+    
+
   );
 };
 
