@@ -177,7 +177,7 @@ const StoragePage = () => {
 
 
       <div className="absolute right-5 top-0 text-white mt-5">
-        <Link to="/">Go to Main</Link>
+        <Link className='hover:text-gray-400' to="/">Go to Main</Link>
 
       </div>
 
