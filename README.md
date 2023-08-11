@@ -1,1 +1,1 @@
-https://github.com/salihcelebi96/Graphic/issues/1#issue-1846075311
+https://github.com/salihcelebi96/Graphic/assets/105693495/6c057160-da8b-402d-a33d-839c1a74d1fd
