@@ -53,12 +53,12 @@ const PieChartComponent = () => {
       .text((d) => `${d.data.label}: ${(d.data.value ).toFixed(2)}%`);
 
     return () => {
-      // SVG temizleme
+      
       d3.select(chartRef.current).selectAll('svg').remove();
     };
   }, [successShot, unSuccessShot]);
 
-  return <div className='flex justify-center mb-5 h-screen bg-gray-600 items-center' ref={chartRef}></div>;
+  return <div className='flex justify-center  lg:items-start  sm:items-center  mt-10     mb-5 h-screen bg-gray-600  ' ref={chartRef}></div>;
 };
 
 export default PieChartComponent;

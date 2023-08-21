@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveData, setPieChartData } from '../redux/pieChartSlice';
 import { Link, useNavigate } from 'react-router-dom';
@@ -24,6 +24,17 @@ const Main = () => {
   const user = useSelector((state) => state.user);
   console.log("maine js", user)
 
+
+
+
+
+
+
+
+
+
+
+
   const handleTotalShotChange = (e) => {
     setTotalShot(Number(e.target.value));
   };
@@ -45,7 +56,12 @@ const Main = () => {
       toast.error('Lütfen hesabınıza giriş yapın.');
       return;
     }
-  
+
+    if (!totalShot || !successShot || !unSuccessShot || !chartName) {
+      toast.error('Lütfen tüm alanları doldurun.');
+      return;
+    }
+
     const newData = {
       totalShot: Number(totalShot),
       successShot: Number(successShot),
@@ -64,27 +80,13 @@ const Main = () => {
     const updatedData = [...existingData, newData];
 
     localStorage.setItem('savedData', JSON.stringify(updatedData));
-    if (!user.username || user.username === "") {
-      toast.error('Lütfen hesabınıza giriş yapın.');
-      return;
-    }
-    
-   
-
-
-    if (!totalShot || !successShot || !unSuccessShot || !chartName) {
-      toast.error('Lütfen tüm alanları doldurun.');
-      return;
-    }
-
     toast.success('Veriler başarıyla kaydedildi.');
-   
-
   };
+
 
   const handleUpdateClick = () => {
     if (!totalShot || !successShot || !unSuccessShot) {
-      return; // Yeni değer girilmediyse güncelleme yapma
+      return; 
     }
 
     const updatedSuccessShot = Number(totalShot) - Number(unSuccessShot);
@@ -97,74 +99,74 @@ const Main = () => {
   };
 
   return (
-    <div className='grid'>
-      <div className="flex   justify-between  pt-5 gap-9 mx-5 ">
-      <div className='flex   gap-10'>
-        <div className="flex flex-col">
-          <label htmlFor="chartName">Chart Name: </label>
-          <input
-            className="w-[120px] bg-gray-700 border-none outline-none"
-            type="text"
-            id="chartName"
-            value={chartName}
-            onChange={handleChartNameChange}
-          />
+    <div className='flex  '>
+      <div className="flex  w-full   justify-between  pt-5 gap-9 mx-5 ">
+        <div className='flex flex-col  gap-10'>
+          <div className="flex flex-col">
+            <label htmlFor="chartName">Chart Name: </label>
+            <input
+              className="w-[120px] bg-gray-700 border-none outline-none"
+              type="text"
+              id="chartName"
+              value={chartName}
+              onChange={handleChartNameChange}
+            />
+          </div>
+
+          <div className="flex flex-col">
+            <label htmlFor="totalShot">Total Shot: </label>
+            <input
+              className="w-[100px] bg-gray-700 outline-none"
+              type="text"
+              id="totalShot"
+              value={totalShot}
+              onChange={handleTotalShotChange}
+            />
+          </div>
+          <div className="flex flex-col">
+            <label htmlFor="successShot">Success Shot: </label>
+            <input
+              className="w-[100px] bg-gray-700 outline-none"
+              type="text"
+              id="successShot"
+              value={successShot}
+              onChange={handleSuccessShotChange}
+            />
+          </div>
+          <div className="flex flex-col">
+            <label htmlFor="unSuccessShot">Unsuccess Shot: </label>
+            <input
+              className="w-[110px] bg-gray-700 outline-none"
+              type="text"
+              id="unSuccessShot"
+              value={unSuccessShot}
+              onChange={handleUnSuccessShotChange}
+            />
+          </div>
+
+          <div className="flex    items-start gap-5">
+            <button className='hover:text-gray-400' onClick={handleSaveClick} >Kaydet</button>
+            <button className='hover:text-gray-400' onClick={handleUpdateClick} disabled={!user || !user.username}   >Güncelle</button>
+          </div>
         </div>
 
-        <div className="flex flex-col">
-          <label htmlFor="totalShot">Total Shot: </label>
-          <input
-            className="w-[100px] bg-gray-700 outline-none"
-            type="text"
-            id="totalShot"
-            value={totalShot}
-            onChange={handleTotalShotChange}
-          />
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="successShot">Success Shot: </label>
-          <input
-            className="w-[100px] bg-gray-700 outline-none"
-            type="text"
-            id="successShot"
-            value={successShot}
-            onChange={handleSuccessShotChange}
-          />
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="unSuccessShot">Unsuccess Shot: </label>
-          <input
-            className="w-[110px] bg-gray-700 outline-none"
-            type="text"
-            id="unSuccessShot"
-            value={unSuccessShot}
-            onChange={handleUnSuccessShotChange}
-          />
+        <div className='flex  gap-10'>
+
+          <div className="ml-auto flex">
+            <Link className='hover:text-gray-400' to="/login">Login</Link>
+          </div>
+          <div className="ml-auto ">
+            <Link className='hover:text-gray-400' to="/store">Go to Store</Link>
+          </div>
+          <div className='toast-notification text-red-600 '>
+            <Toaster position="top-right" autoClose={1000} />
+          </div>
         </div>
 
-        <div className="flex      items-start gap-5">
-          <button className='hover:text-gray-400' onClick={handleSaveClick} disabled={!user || !user.username}>Kaydet</button>
-          <button className='hover:text-gray-400' onClick={handleUpdateClick} disabled={!user || !user.username}   >Güncelle</button>
-        </div>
+
       </div>
-
-      <div className='flex gap-10'>
-       
-        <div className="ml-auto flex">
-          <Link className='hover:text-gray-400' to="/login">Login</Link>
-        </div>
-        <div className="ml-auto ">
-          <Link className='hover:text-gray-400' to="/store">Go to Store</Link>
-        </div>
-        <div className='toast-notification text-red-600 '>
-          <Toaster position="top-right" autoClose={3000} />
-        </div>
-      </div>
-
-
     </div>
-    </div>
-    
+
   );
 };
 

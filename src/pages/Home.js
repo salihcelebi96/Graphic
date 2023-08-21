@@ -4,7 +4,7 @@ import Graphic from "../component/Graphic"
 
 const Home = () => {
   return (
-    <div className='bg-gray-600 text-white'>
+    <div className='bg-gray-600 text-white '>
       <Main/>
       <Graphic/>
     </div>

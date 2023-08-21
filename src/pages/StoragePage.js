@@ -17,9 +17,9 @@ const StoragePage = () => {
 
     
     
-    // Rest of the code for the StoragePage component...
     
-    // SVG cleanup
+    
+   
     d3.select(chartRef.current).selectAll('svg').remove();
 
     let localStorageData = JSON.parse(localStorage.getItem('savedData'));
@@ -30,31 +30,23 @@ const StoragePage = () => {
         .append('div')
         .attr('class', 'chart-container');
 
-      chartContainer
-        .append('div')
-        .attr('class', 'chart-row')
-        .style('display', 'flex')
-        .style('justify-content', 'center')
-        .style('align-items', 'center')
-        .style('font-size', '4rem')
-        .style('text-align', 'center')
-        .text('No data found'); // Show a message when there is no data
+     
 
-      setIsNull(true); // Set the isNull state to true
-      setChartNames([]); // Clear chart names
+      setIsNull(true); 
+      setChartNames([]); 
 
       return;
     }
 
-    setIsNull(false); // Set the isNull state to false
+    setIsNull(false); 
 
     const chartDataSlice = Object.values(localStorageData);
 
-    // Create charts
+    
     for (let i = 0; i < chartDataSlice.length; i++) {
       const dataGroup = chartDataSlice[i];
 
-      // Check if the data group has valid values
+      
       if (
         typeof dataGroup.totalShot !== 'number' ||
         typeof dataGroup.successShot !== 'number' ||
@@ -63,16 +55,16 @@ const StoragePage = () => {
         isNaN(dataGroup.successShot) ||
         isNaN(dataGroup.unSuccessShot)
       ) {
-        continue; // Skip this data group if it has invalid values
+        continue; 
       }
 
-      // Calculate the chartData for the current data group
+      
       const chartData = [
         { label: 'Successful Shots', value: (dataGroup.successShot / dataGroup.totalShot) * 100 },
         { label: 'Unsuccessful Shots', value: (dataGroup.unSuccessShot / dataGroup.totalShot) * 100 },
       ];
 
-      // Create an SVG element for the chart
+     
       const width = 350;
       const height = 350;
       const radius = Math.min(width, height) / 2;
@@ -93,10 +85,10 @@ const StoragePage = () => {
       const chartName = dataGroup.chartName;
 
       if (chartNames.includes(chartName)) {
-        continue; // Skip this data group if the chart name is already displayed
+        continue; 
       }
 
-      setChartNames((prevChartNames) => [...prevChartNames, chartName]); // Add the chart name to the list
+      setChartNames((prevChartNames) => [...prevChartNames, chartName]); 
 
       chartDiv
         .append('div')
@@ -122,7 +114,7 @@ const StoragePage = () => {
         .attr('d', arc)
         .attr('fill', (d, i) => color(i))
         .on('click', (d) => {
-          setSelectedChart(dataGroup); // Set the selected chart to the entire dataGroup object
+          setSelectedChart(dataGroup); 
         });
       
 
@@ -138,7 +130,7 @@ const StoragePage = () => {
         .text((d) => `${d.data.label}: ${d.data.value.toFixed(2)}%`);
         
 
-      // Add Remove button
+      
       chartDiv
         .append('div')
         .style('text-align', 'center')
@@ -146,14 +138,14 @@ const StoragePage = () => {
         .attr('class', 'remove-button')
         .text('Remove')
         .on('click', () => {
-          // Remove the data group from localStorage
+          
           localStorageData = localStorageData.filter((group) => group.chartName !== chartName);
           localStorage.setItem('savedData', JSON.stringify(localStorageData));
 
-          // Remove the chart from the DOM
+          
           chartContainer.remove();
 
-          // Update the chart names list
+          
           setChartNames((prevChartNames) => prevChartNames.filter((name) => name !== chartName));
         });
     }
@@ -176,13 +168,13 @@ const StoragePage = () => {
 
 
 
-      <div className="absolute right-5 top-0 text-white mt-5">
+      <div className="absolute right-20  text-white mt-5 ">
         <Link className='hover:text-gray-400' to="/">Go to Main</Link>
 
       </div>
 
       {isNull && (
-        <div className="flex justify-center text-red-500 text-4xl"></div>
+        <div className="flex justify-center text-red-500 text-4xl"> No data found</div>
 
       )}
       
