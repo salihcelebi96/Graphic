@@ -7,17 +7,17 @@ const Download = ({ selectedChart, setSelectedChart }) => {
     console.log(selectedChart);
 
     const handleDownload = () => {
-        // Check if the selectedChart is not null
+       
         if (!selectedChart) {
             return;
         }
 
-        // Create the data URI for the chart SVG
+        
         const svgElement = chartRef.current.querySelector('svg');
         const svgData = new XMLSerializer().serializeToString(svgElement);
         const dataUri = 'data:image/svg+xml,' + encodeURIComponent(svgData);
 
-        // Create a link element and trigger the download
+        
         const link = document.createElement('a');
         link.href = dataUri;
         link.download = 'chart.svg';
@@ -34,7 +34,7 @@ const Download = ({ selectedChart, setSelectedChart }) => {
 
 
         if (!selectedChart) {
-            return; // If selectedChart is null or undefined, exit early
+            return; 
         }
 
 

@@ -4,7 +4,7 @@ const initialState = {
   totalShot: 100,
   successShot: 50,
   unSuccessShot: 50,
-  savedData: null, // Initialize savedData as null
+  savedData: null, 
 };
 
 const pieChartSlice = createSlice({

@@ -159,7 +159,7 @@ const StoragePage = () => {
   return (
     <div className="h-full bg-gray-600 text-white storage-page">
       <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-5 lg:grid-cols-4 absolute left-3" ref={chartRef}></div>
-      {selectedChart ? ( // Check if selectedChart is not null
+      {selectedChart ? ( 
         <div className='overlay'>
           <Download selectedChart={selectedChart} setSelectedChart={setSelectedChart} isModalOpen={isModalOpen} />
         </div>
