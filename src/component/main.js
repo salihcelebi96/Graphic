@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { saveData, setPieChartData } from '../redux/pieChartSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast, Toaster } from 'react-hot-toast';
-
+import Login from "../component/Login";
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 
@@ -11,7 +12,7 @@ import { toast, Toaster } from 'react-hot-toast';
 const Main = () => {
 
 
-
+  const { logout, isAuthenticated } = useAuth0();
 
 
   const [totalShot, setTotalShot] = useState('');
@@ -52,7 +53,7 @@ const Main = () => {
   };
 
   const handleSaveClick = () => {
-    if (!user.username || user.username === "") {
+    if (!isAuthenticated) {
       toast.error('Lütfen hesabınıza giriş yapın.');
       return;
     }
@@ -144,16 +145,18 @@ const Main = () => {
             />
           </div>
 
-          <div className="flex    items-start gap-5">
+          <div className="flex   items-start gap-5">
             <button className='hover:text-gray-400' onClick={handleSaveClick} >Kaydet</button>
-            <button className='hover:text-gray-400' onClick={handleUpdateClick} disabled={!user || !user.username}   >Güncelle</button>
+            <button className='hover:text-gray-400' onClick={handleUpdateClick} disabled={!isAuthenticated}   >Güncelle</button>
           </div>
         </div>
 
         <div className='flex  gap-10'>
 
           <div className="ml-auto flex">
-            <Link className='hover:text-gray-400' to="/login">Login</Link>
+            <Link className='hover:text-gray-400' >
+            <Login/>
+            </Link>
           </div>
           <div className="ml-auto ">
             <Link className='hover:text-gray-400' to="/store">Go to Store</Link>
