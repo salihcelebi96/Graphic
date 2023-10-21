@@ -16,7 +16,7 @@ const LoginButton = () => {
   };
 
   const handleLogout = () => {
-    auth0Logout({ returnTo: window.location.origin });
+    auth0Logout();
     
     
     
