@@ -50,7 +50,7 @@ const Main = () => {
 
   const handleChartNameChange = (e) => {
     setChartName(e.target.value);
-  };
+  }; 
 
   const handleSaveClick = () => {
     if (!isAuthenticated) {
