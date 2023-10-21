@@ -17,7 +17,7 @@ const LoginButton = () => {
 
   const handleLogout = () => {
     auth0Logout();
-    window.location.href = window.location.origin;
+    window.location.href = "https://graphic-beige.vercel.app/";
     
     
   };
