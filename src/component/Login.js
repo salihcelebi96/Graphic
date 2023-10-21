@@ -16,7 +16,7 @@ const LoginButton = () => {
   };
 
   const handleLogout = () => {
-    auth0Logout(  'https://graphic-beige.vercel.app/' );
+    auth0Logout();
     
     
     
