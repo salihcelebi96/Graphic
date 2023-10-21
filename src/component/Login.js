@@ -17,6 +17,7 @@ const LoginButton = () => {
 
   const handleLogout = () => {
     auth0Logout();
+    window.location.href = window.location.origin;
     
     
   };
