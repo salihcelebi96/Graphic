@@ -16,7 +16,7 @@ ReactDOM.render(
     
     <Auth0Provider
     domain="dev-r3w4lojvszagpcnm.us.auth0.com"
-    clientId="ZeW4XrHfLjOyU88CeOwAhim1GKAIUIYx"
+    clientId="6C8rJ9r4wmNi4enO5TthKuBx2kT25XMp"
     authorizationParams={{
       redirect_uri: window.location.origin
   }}
