@@ -1,0 +1,19 @@
+
+
+@keyframes blink {
+    0% {
+      color: red;
+    }
+    50% {
+      color: transparent;
+    }
+    100% {
+      color: red;
+    }
+  }
+  
+  .blinking {
+    animation: blink 3s linear infinite;
+    
+  }
+  

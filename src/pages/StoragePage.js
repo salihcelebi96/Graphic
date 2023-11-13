@@ -169,7 +169,7 @@ const StoragePage = () => {
 
 
       <div className="absolute right-20  text-white mt-5 ">
-        <Link className='hover:text-gray-400' to="/">Go to Main</Link>
+        <Link className='hover:text-blue-500' to="/">Go to Main</Link>
 
       </div>
 

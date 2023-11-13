@@ -151,15 +151,15 @@ const Main = () => {
           </div>
         </div>
 
-        <div className='flex  gap-10'>
+        <div className='flex  w-60 h-20 items-center relative  gap-10'>
 
-          <div className="ml-auto flex">
+          <div className="ml-auto  flex">
             <Link className='hover:text-gray-400' >
             <Login/>
             </Link>
           </div>
-          <div className="ml-auto ">
-            <Link className='hover:text-gray-400' to="/store">Go to Store</Link>
+          <div className="ml-auto   rounded-md ">
+            <Link className='hover:text-blue-500 ' to="/store">Go to Store</Link>
           </div>
           <div className='toast-notification text-red-600 '>
             <Toaster position="top-right" autoClose={1000} />
